@@ -1,0 +1,113 @@
+//This question is troll
+public class TestConsecutiveFour {
+
+    public static void main(String[] args) {
+    /*  You may use the following (6x7) array to test your program (e.g., false)
+        0 1 0 6 1 6 1
+        0 1 6 8 6 0 1
+        5 2 2 1 8 2 9
+        6 5 6 1 1 2 1
+        6 9 6 2 1 9 1
+        3 5 9 1 3 1 1
+    */
+
+    /*  The 1st sample (6x7 array) provide in the question is provided below (e.g., true)
+        0 1 0 3 1 6 1
+        0 1 6 8 6 0 1
+        5 6 2 1 8 2 9
+        6 5 6 1 1 9 1
+        1 3 6 1 4 0 7
+        3 3 3 3 4 0 7
+
+        0 1 1 0 1 6 1
+        0 1 6 8 6 0 1
+        5 2 2 8 8 2 9
+        6 5 6 8 1 2 1
+        6 9 6 8 1 9 1
+        3 5 9 1 3 1 1
+    */
+
+        java.util.Scanner input = new java.util.Scanner(System.in);
+        System.out.print("Enter the number of rows: ");
+        int numberOfRows = input.nextInt();
+        System.out.print("Enter the number of columns: ");
+        int numberOfColumns = input.nextInt();
+
+        int[][] board = new int[numberOfRows][numberOfColumns];
+
+        System.out.println("Enter the array values: ");
+        for (int i = 0; i < numberOfColumns; i++) {
+            for (int j = 0; j < numberOfRows; j++) {
+                board[i][j] = input.nextInt();
+            }
+        }
+
+        System.out.println(isConsecutiveFour(board));
+    }
+
+    public static boolean isConsecutiveFour(int[][] values) {
+        int numberOfRows = values.length;
+        int numberOfColumns = values[0].length;
+        // Write a for-loop to check rows
+        int i, j, k, l;
+        //int consecCount;
+        System.out.println("===Starting Rows===");
+        for (i = 0; i < numberOfRows; i++) {
+            for (j = 0; j < numberOfColumns-3; j++) {
+                if (values[i][j] == values[i][j+1] &&
+                    values[i][j+1] == values[i][j+2] &&
+                        values[i][j+2] == values[i][j+3]) {
+                            return true;
+                }
+            }
+        }
+        // Write a nested for-loop to check columns
+        System.out.println("===Starting Columns====");
+        for (i = 0; i < numberOfRows; i++) {
+            for (j = 0; j < numberOfColumns-3; j++) {
+                System.out.println("Testing values[" + j + "][" + i + "]");
+                if (i == 6) {
+                    System.out.println("j is " + j + " i is " + i);
+                    System.out.println(values[j][i]);
+                    System.out.println(values[j+1][i]);
+                    System.out.println(values[j+2][i]);
+                    System.out.println(values[j+3][i]);
+                }
+                if (values[j][i] == values[j+1][i] &&
+                    values[j+1][i] == values [j+2][i] &&
+                        values[j+2][i] == values[j+3][i]) {
+                            return true;
+                }
+            }
+        }
+
+        // Write a nested for-loop to check major diagonal (lower part)
+
+
+        // Write a nested for-loop to check major diagonal (upper part)
+
+
+        // Write a nested for-loop to check sub-diagonal (left part)
+
+
+        // Write a nested for-loop to check sub-diagonal (right part)
+
+        return false;
+     }
+
+     public static boolean isConsecutiveFour(int[] values) {
+        for (int i = 0; i < values.length - 3; i++) {
+          boolean isEqual = true;
+          for (int j = i; j < i + 3; j++) {
+            if (values[j] != values[j + 1]) {
+              isEqual = false;
+              break;
+            }
+          }
+
+          if (isEqual) return true;
+        }
+
+        return false;
+    }
+}
